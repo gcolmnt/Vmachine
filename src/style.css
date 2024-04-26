@@ -1,0 +1,101 @@
+html,
+body,
+#root
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:  rgb(187, 245, 255);
+}
+
+/**
+ * Interface
+ */
+ .interface
+ {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     pointer-events: none;
+     font-family: "Press Start 2P", system-ui;
+     font-weight: 400;
+     font-style: normal;
+ }
+
+ /**
+ * Time
+ */
+.time
+{
+    position: absolute;
+    top: 2%;
+    left: 0%;
+    width: 100%;
+    color: #000000;
+    font-size: 40px;
+    padding-top: 5px;
+    border-radius: 5px;
+    text-align: center;
+    pointer-events: none;
+}
+ 
+ /**
+  * Start
+  */
+  .start
+  {
+     display: flex;
+     justify-content: center;
+     position: absolute;
+     top: 22%;
+     left: 0%;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     width: 100%;
+     color: #ffffff;
+     font-size: 250%;
+     background: #00000033;
+     padding-top: 10px;
+     pointer-events: auto;
+     cursor: pointer;
+  }
+ 
+ /**
+  * Restart
+  */
+  
+  .death
+  {
+     display: flex;
+     justify-content: center;
+     position: absolute;
+     top: 2%;
+     left: 0%;
+     width: 100%;
+     color: #ff0000;
+     font-size: calc(1rem + 3vw);
+     padding-top: 10px;
+     pointer-events: none;
+  }
+  
+  .reward
+  {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 22%;
+    left: 0%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 200%;
+    background: #00000033;
+    padding-top: 10px;
+    pointer-events: auto;
+    cursor: pointer;
+  }

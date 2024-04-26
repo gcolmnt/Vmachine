@@ -1,0 +1,284 @@
+import { useRef, useState, useEffect } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import useGame from './stores/useGame.jsx'
+import * as THREE from 'three'
+
+export default function Machine({ score }) {
+
+    const phase = useGame((state) => state.phase)
+    const restart = useGame((state) => state.restart)
+
+    const reward1 = useRef()
+    const reward2 = useRef()
+    const reward3 = useRef()
+    const reward4 = useRef()
+    const reward5 = useRef()
+    const reward6 = useRef()
+    const reward7 = useRef()
+    const reward8 = useRef()
+    const reward9 = useRef()
+    const reward10 = useRef()
+    const reward11 = useRef()
+    const reward12 = useRef()
+    const reward13 = useRef()
+    const reward14 = useRef()
+    const reward15 = useRef()
+
+    const [oneHasBeenPushed, setOneHasBeenPushed] = useState(false)
+    const [twoHasBeenPushed, setTwoHasBeenPushed] = useState(false)
+    const [threeHasBeenPushed, setThreeHasBeenPushed] = useState(false)
+    const [fourHasBeenPushed, setFourHasBeenPushed] = useState(false)
+    const [fiveHasBeenPushed, setFiveHasBeenPushed] = useState(false)
+    const [sixHasBeenPushed, setSixHasBeenPushed] = useState(false)
+    const [sevenHasBeenPushed, setSevenHasBeenPushed] = useState(false)
+    const [heightHasBeenPushed, setHeightHasBeenPushed] = useState(false)
+    const [nineHasBeenPushed, setNineHasBeenPushed] = useState(false)
+    const [tenHasBeenPushed, setTenHasBeenPushed] = useState(false)
+    const [elevenHasBeenPushed, setElevenHasBeenPushed] = useState(false)
+    const [twelveHasBeenPushed, setTwelveHasBeenPushed] = useState(false)
+    const [thirteenHasBeenPushed, setThirteenHasBeenPushed] = useState(false)
+    const [fourteenHasBeenPushed, setFourteenHasBeenPushed] = useState(false)
+    const [fiveteenHasBeenPushed, setFiveteenHasBeenPushed] = useState(false)
+
+
+    const rotationQuaternion = new THREE.Quaternion()
+    rotationQuaternion.setFromEuler(new THREE.Euler(0, 0, 0, 'XYZ'))
+
+    const reset = (object) =>{
+        object.current.setLinvel({ x: 0, y: 0, z: 0 })
+        object.current.setAngvel({ x: 0, y: 0, z: 0 })  
+        object.current.setRotation(rotationQuaternion)
+    }
+
+    const push = (object) => {
+        if (object.current) {
+            object.current.applyImpulse({ x: 0, y: 0, z: 25 }, true)
+        }
+    }
+
+    useEffect(() => {
+        if (phase === 'rewarding') {
+            if (oneHasBeenPushed || score === 0){
+                setTimeout(restart, 2000)
+            }       
+        }
+        if (phase === 'prepared') {
+            reset(reward1)
+            reset(reward2)
+            reset(reward3)
+            reset(reward4)
+            reset(reward5)
+            reset(reward6)
+            reset(reward7)
+            reset(reward8)
+            reset(reward9)
+            reset(reward10)
+            reset(reward11)
+            reset(reward12)
+            reset(reward13)
+            reset(reward14)
+            reset(reward15)
+
+            reward1.current.setTranslation({ x: -18, y: 21.5, z: 0 })
+            reward2.current.setTranslation({ x: -12, y: 21.5, z: 0 })
+            reward3.current.setTranslation({ x: -6, y: 21.5, z: 0 })
+            reward4.current.setTranslation({ x: 0, y: 21.5, z: 0 })
+            reward5.current.setTranslation({ x: 6, y: 21.5, z: 0 })
+
+            reward6.current.setTranslation({ x: -18, y: 7.5, z: 0 })
+            reward7.current.setTranslation({ x: -12, y: 7.5, z: 0 })
+            reward8.current.setTranslation({ x: -6, y: 7.5, z: 0 })
+            reward9.current.setTranslation({ x: 0, y: 7.5, z: 0 })
+            reward10.current.setTranslation({ x: 6, y: 7.5, z: 0 })
+
+            reward11.current.setTranslation({ x: -18, y: -6.5, z: 0 })
+            reward12.current.setTranslation({ x: -12, y: -6.5, z: 0 })
+            reward13.current.setTranslation({ x: -6, y: -6.5, z: 0 })
+            reward14.current.setTranslation({ x: 0, y: -6.5, z: 0 })
+            reward15.current.setTranslation({ x: 6, y: -6.5, z: 0 })
+
+            setOneHasBeenPushed(false)
+            setTwoHasBeenPushed(false)
+            setThreeHasBeenPushed(false)
+            setFourHasBeenPushed(false)
+            setFiveHasBeenPushed(false)
+            setSixHasBeenPushed(false)
+            setSevenHasBeenPushed(false)
+            setHeightHasBeenPushed(false)
+            setNineHasBeenPushed(false)
+            setTenHasBeenPushed(false)
+            setElevenHasBeenPushed(false)
+            setTwelveHasBeenPushed(false)
+            setThirteenHasBeenPushed(false)
+            setFourteenHasBeenPushed(false)
+            setFiveteenHasBeenPushed(false)
+        }
+    }, [phase, score, oneHasBeenPushed])
+
+
+    useFrame((state, delta) => {
+        if (phase === 'rewarding') {
+            if (score >= 15 && !fiveteenHasBeenPushed) {
+                push(reward15)
+                setTimeout(() => setFiveteenHasBeenPushed(true), 1000)
+            } else if (score >= 14 && !fourteenHasBeenPushed) {
+                push(reward14)
+                setTimeout(() => setFourteenHasBeenPushed(true), 1000)
+            } else if (score >= 13 && !thirteenHasBeenPushed) {
+                push(reward13)
+                setTimeout(() => setThirteenHasBeenPushed(true), 1000)
+            } else if (score >= 12 && !twelveHasBeenPushed) {
+                push(reward12)
+                setTimeout(() => setTwelveHasBeenPushed(true), 1000)
+            } else if (score >= 11 && !elevenHasBeenPushed) {
+                push(reward11)
+                setTimeout(() => setElevenHasBeenPushed(true), 1000)
+            } else if (score >= 10 && !tenHasBeenPushed) {
+                push(reward10)
+                setTimeout(() => setTenHasBeenPushed(true), 1000)
+            } else if (score >= 9 && !nineHasBeenPushed) {
+                push(reward9)
+                setTimeout(() => setNineHasBeenPushed(true), 1000)
+            } else if (score >= 8 && !heightHasBeenPushed) {
+                push(reward8)
+                setTimeout(() => setHeightHasBeenPushed(true), 1000)
+            } else if (score >= 7 && !sevenHasBeenPushed) {
+                push(reward7)
+                setTimeout(() => setSevenHasBeenPushed(true), 1000)
+            } else if (score >= 6 && !sixHasBeenPushed) {
+                push(reward6)
+                setTimeout(() => setSixHasBeenPushed(true), 1000)
+            } else if (score >= 5 && !fiveHasBeenPushed) {
+                push(reward5)
+                setTimeout(() => setFiveHasBeenPushed(true), 1000)
+            } else if (score >= 4 && !fourHasBeenPushed) {
+                push(reward4)
+                setTimeout(() => setFourHasBeenPushed(true), 1000)
+            } else if (score >= 3 && !threeHasBeenPushed) {
+                push(reward3)
+                setTimeout(() => setThreeHasBeenPushed(true), 1000)
+            } else if (score >= 2 && !twoHasBeenPushed) {
+                push(reward2)
+                setTimeout(() => setTwoHasBeenPushed(true), 1000)
+            } else if (score >= 1 && !oneHasBeenPushed) {
+                push(reward1)
+                setTimeout(() => setOneHasBeenPushed(true), 1000)
+            }
+        }
+        console.log(phase)
+    })
+
+    return (<>
+        {/* Static colliders */}
+        {/* Shelf Top */}
+        <CuboidCollider position={ [ -6, 18, -4 ]} args={ [ 16, 0.5, 8 ] }  />
+        {/* Shelf Mid */}
+        <CuboidCollider position={ [ -6, 4, -4 ]} args={ [ 16, 0.5, 8 ] } />
+        {/* Shelf Bot */}
+        <CuboidCollider position={ [ -6, -10, -4 ]} args={ [ 16, 0.5, 8 ] } />
+        {/* Shelf Slide */}
+        <CuboidCollider position={ [ -6, -24, 8 ]} args={ [ 16, 0.5, 8 ] } rotation={ [Math.PI * 0.225, 0, 0] }/>
+        {/* Window */}
+        <CuboidCollider position={ [ -6, 8, 16 ]} args={ [ 16, 24, 0.5 ] } />
+        {/* Floor */}
+        <CuboidCollider position={ [ -6, -36.5, -4 ]} args={ [ 200, 0.5, 200 ] } />
+
+        {/* Moving colliders */}
+        {/* Falling rewards */}
+        {/* Top Row */}        
+        <RigidBody ref={reward1} type="Dynamic" position={[-18, 21.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward2} type="Dynamic" position={[-12, 21.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward3} type="Dynamic" position={[-6, 21.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward4} type="Dynamic" position={[0, 21.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward5} type="Dynamic" position={[6, 21.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        {/* Mid Row */}
+        <RigidBody ref={reward6} type="Dynamic" position={[-18, 7.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward7} type="Dynamic" position={[-12, 7.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward8} type="Dynamic" position={[-6, 7.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward9} type="Dynamic" position={[0, 7.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward10} type="Dynamic" position={[6, 7.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        {/* Bottom row */}
+        <RigidBody ref={reward11} type="Dynamic" position={[-18, -6.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward12} type="Dynamic" position={[-12, -6.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward13} type="Dynamic" position={[-6, -6.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward14} type="Dynamic" position={[0, -6.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+        <RigidBody ref={reward15} type="Dynamic" position={[6, -6.5, 0]} rotation={[0, 0, 0]} linearDamping={0}>
+            <mesh>
+                <boxGeometry args={[3, 6, 6]} />
+                <meshStandardMaterial color="mediumpurple" />
+            </mesh>
+        </RigidBody>
+    </>
+    )
+}
