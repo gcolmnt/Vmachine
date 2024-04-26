@@ -11,10 +11,10 @@ Feel free to explore the code and provide feedback. If you have any questions or
 Hope you enjoy this mini-game!
 
 ## How to Play
-Click on the vending machine to interact with it.
-Type in a series of codes correctly.
-Each correctly entered code will add +1 to your score.
-Your final score determines the number of prizes you'll receive from the vending machine.
+Click on the vending machine to interact with it.<br>
+Type in a series of codes correctly.<br>
+Each correctly entered code will add +1 to your score.<br>
+Your final score determines the number of prizes you'll receive from the vending machine.<br>
 How many prizes will you be able to get ?
 
 ## Special Thanks
