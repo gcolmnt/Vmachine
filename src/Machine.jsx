@@ -111,7 +111,7 @@ export default function Machine({ score, gltfNodes }) {
 
         if (phase === 'rewarding') {
             setResetPosition(false)
-            for (let i = score - 1; i >= 0; i--) {
+            for (let i = Math.min(score - 1, 14); i >= 0; i--) {
                 if (!hasBeenPushed[i]) {
                     pushReward(i, adjustedForce)
                     break; // Push one reward per frame
