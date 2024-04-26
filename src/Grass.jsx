@@ -5,6 +5,7 @@ import grassVertexShader from './shaders/grassvert.glsl'
 import grassFragmentShader from './shaders/grassfrag.glsl'
 
 export default function Grass() {
+// Grass shaders from James Smyth
 // Parameters
 const grassGeometry = useRef()
 
