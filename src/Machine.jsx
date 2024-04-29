@@ -22,12 +22,12 @@ export default function Machine({ score, gltfNodes }) {
 
     const phase = useGame((state) => state.phase)
     const restart = useGame((state) => state.restart)
-    const baseImpulseForce = 0.001
+    const baseImpulseForce = 0.0013
 
     const rewardRefs = useRef(Array.from({ length: rewardCount }, () => useRef()))
     const [hasBeenPushed, setHasBeenPushed] = useState(Array(rewardCount).fill(false))
     const [resetPosition, setResetPosition] = useState(false)
-    const [impulseForce, setImpulseForce] = useState(0.001)
+    const [impulseForce, setImpulseForce] = useState(0.0013)
     const [ compressor ] = useState(() => new Audio('./compressor.mp3'))
     const [ compressorOn, setCompressorOn] = useState(false)
 
@@ -134,20 +134,20 @@ export default function Machine({ score, gltfNodes }) {
             {/* Shelf Top */}
             <CuboidCollider position={ [ 0, 4, 0 ]} args={ [ 1.1, 0.02, 0.7] }  />
             <RigidBody type="fixed">
-                <mesh receiveShadow position={ [ 0, 3.3, 0 ]} scale={ [ 1.8, 0.04, 0.7] }>
+                <mesh receiveShadow position={ [ 0, 3.3, 0 ]} scale={ [ 1.8, 0.04, 0.65] }>
                     <boxGeometry />
                     <meshStandardMaterial color="#49242a" />
                 </mesh>
             </RigidBody>
             {/* Shelf Mid */}
             <RigidBody type="fixed">
-                <mesh receiveShadow position={ [ 0, 2.7, 0 ]} scale={ [ 1.8, 0.04, 0.7] }>
+                <mesh receiveShadow position={ [ 0, 2.7, 0 ]} scale={ [ 1.8, 0.04, 0.65] }>
                     <boxGeometry />
                     <meshStandardMaterial color="#49242a" />
                 </mesh>
             </RigidBody>
             {/* Shelf Bot */}
-            <CuboidCollider position={ [ 0, 2.1, 0 ]} args={ [ 1, 0.04, 0.4 ] } />
+            <CuboidCollider position={ [ 0, 2.1, 0 ]} args={ [ 1, 0.04, 0.37 ] } />
             {/* Shelf Slide */}
             <CuboidCollider position={ [ 0, 1, 0 ]} args={ [ 0.85, 0.02, 1 ] } rotation={ [Math.PI * 0.20, 0, 0] }/>
             {/* Stopper Bot */}
@@ -167,7 +167,9 @@ export default function Machine({ score, gltfNodes }) {
             {/* Side Right 3*/}
             <CuboidCollider position={ [ 0.54, 0.6, 0 ]} args={ [ 0.02, 0.5, 0.8 ] } />
             {/* Window */}
-            <CuboidCollider position={ [ 0, 2.5, 0.75 ]} args={ [ 1, 1.4, 0.02 ] } />
+            <CuboidCollider position={ [ 0, 2.5, 0.67 ]} args={ [ 2, 1.45, 0.02 ] } />
+            {/* Back */}
+            <CuboidCollider position={ [ 0, 2.5, -0.7 ]} args={ [ 1, 1.45, 0.02 ] } />
             {/* Floor */}
             <CuboidCollider position={ [ 0, 0, 0 ]} args={ [ 7, 0.1, 7 ] } />
             <mesh position={ [ 0, 0, 0 ]} >

@@ -260,9 +260,9 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
                 {`${userInput}`}
             </Text>
             <Text
-                fontSize={1}
+                fontSize={0.9}
                 font="./arcade.woff"
-                position={[-1.925, 2.83, 0.2]}
+                position={[-1.83, 2.83, 0.2]}
                 color="green"
             >
                 {`${score}`}
