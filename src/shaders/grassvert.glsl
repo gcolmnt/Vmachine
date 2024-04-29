@@ -10,9 +10,9 @@ void main() {
   vColor = color;
   vec3 cpos = position;
 
-  float waveSize = 30.0;
-  float tipDistance = 0.9;
-  float centerDistance = 0.3;
+  float waveSize = 10.0;
+  float tipDistance = 0.3;
+  float centerDistance = 0.1;
 
   if (color.x > 0.6) {
     cpos.x += sin((uTime * 1.5) + (uv.x * waveSize)) * tipDistance;

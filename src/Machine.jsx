@@ -8,11 +8,11 @@ import * as THREE from 'three'
 
 export default function Machine({ score, gltfNodes }) {
     
-    // Leva
+    // // Leva
     // const { floorColor  } = useControls ('floorColor ', {
     // floorColor :
     //     {
-    //         value: '#2d5c2c' ,
+    //         value: '#74c474' ,
     //         color: true
     //     },
     // })
@@ -22,33 +22,33 @@ export default function Machine({ score, gltfNodes }) {
 
     const phase = useGame((state) => state.phase)
     const restart = useGame((state) => state.restart)
-    const baseImpulseForce = 10
+    const baseImpulseForce = 0.001
 
     const rewardRefs = useRef(Array.from({ length: rewardCount }, () => useRef()))
     const [hasBeenPushed, setHasBeenPushed] = useState(Array(rewardCount).fill(false))
     const [resetPosition, setResetPosition] = useState(false)
-    const [impulseForce, setImpulseForce] = useState(10)
+    const [impulseForce, setImpulseForce] = useState(0.001)
     const [ compressor ] = useState(() => new Audio('./compressor.mp3'))
     const [ compressorOn, setCompressorOn] = useState(false)
 
     const rotationQuaternion = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, 0, 'XYZ'))
 
     const positions = [
-        [-18, 28.1, -3],
-        [-12, 28.1, -3],
-        [-6, 28.1, -3],
-        [0, 28.1, -3],
-        [6, 28.1, -3],
-        [-18, 17.1, -3],
-        [-12, 17.1, -3],
-        [-6, 17.1, -3],
-        [0, 17.1, -3],
-        [6, 17.1, -3],
-        [-18, 5.6, -3],
-        [-12, 5.6, -3],
-        [-6, 5.6, -3],
-        [0, 5.6, -3],
-        [6, 5.6, -3],
+        [-0.7, 3.3, 0.15],
+        [-0.35, 3.3, 0.15],
+        [-0, 3.3, 0.15],
+        [0.35, 3.3, 0.15],
+        [0.7, 3.3, 0.15],
+        [-0.7, 2.7, 0.15],
+        [-0.35, 2.7, 0.15],
+        [0, 2.7, 0.15],
+        [0.35, 2.7, 0.15],
+        [0.7, 2.7, 0.15],
+        [-0.7, 2.1, 0.15],
+        [-0.35, 2.1, 0.15],
+        [0, 2.1, 0.15],
+        [0.35, 2.1, 0.15],
+        [0.7, 2.1, 0.15],
     ]
 
     const resetReward = (ref) => {
@@ -80,21 +80,21 @@ export default function Machine({ score, gltfNodes }) {
             setCompressorOn(false)
             // Set initial positions for rewards
             const positions = [
-                { x: -18, y: 25.6, z: -3 },
-                { x: -12, y: 25.6, z: -3 },
-                { x: -6, y: 25.6, z: -3 },
-                { x: 0, y: 25.6, z: -3 },
-                { x: 6, y: 25.6, z: -3 },
-                { x: -18, y: 14.6, z: -3 },
-                { x: -12, y: 14.6, z: -3 },
-                { x: -6, y: 14.6, z: -3 },
-                { x: 0, y: 14.6, z: -3 },
-                { x: 6, y: 14.6, z: -3 },
-                { x: -18, y: 5.6, z: -3 },
-                { x: -12, y: 5.6, z: -3 },
-                { x: -6, y: 5.6, z: -3 },
-                { x: 0, y: 5.6, z: -3 },
-                { x: 6, y: 5.6, z: -3 },
+                { x: -0.7, y: 3.3, z: 0.15 },
+                { x: -0.35, y: 3.3, z: 0.15 },
+                { x: 0, y: 3.3, z: 0.15 },
+                { x: 0.35, y: 3.3, z: 0.15 },
+                { x: 0.7, y: 3.3, z: 0.15 },
+                { x: -0.7, y: 2.7, z: 0.15 },
+                { x: -0.35, y: 2.7, z: 0.15 },
+                { x: 0, y: 2.7, z: 0.15 },
+                { x: 0.35, y: 2.7, z: 0.15 },
+                { x: 0.7, y: 2.7, z: 0.15 },
+                { x: -0.7, y: 2.1, z: 0.15 },
+                { x: -0.35, y: 2.1, z: 0.15 },
+                { x: 0, y: 2.1, z: 0.15 },
+                { x: 0.35, y: 2.1, z: 0.15 },
+                { x: 0.7, y: 2.1, z: 0.15 },
             ]
             rewardRefs.current.forEach((ref, index) => ref.current.setTranslation(positions[index]))
             setHasBeenPushed(Array(rewardCount).fill(false))
@@ -132,47 +132,49 @@ export default function Machine({ score, gltfNodes }) {
         <>
             {/* Static colliders */}
             {/* Shelf Top */}
-            <CuboidCollider position={ [ -6, 28, -4 ]} args={ [ 16, 0.5, 4 ] }  />
+            <CuboidCollider position={ [ 0, 4, 0 ]} args={ [ 1.1, 0.02, 0.7] }  />
             <RigidBody type="fixed">
-                <mesh receiveShadow position={ [ -6, 28, -4 ]} scale={ [ 32, 1, 8 ] }>
+                <mesh receiveShadow position={ [ 0, 3.3, 0 ]} scale={ [ 1.8, 0.04, 0.7] }>
                     <boxGeometry />
                     <meshStandardMaterial color="#49242a" />
                 </mesh>
             </RigidBody>
             {/* Shelf Mid */}
             <RigidBody type="fixed">
-                <mesh receiveShadow position={ [ -6, 17, -4 ]} scale={ [ 32, 1, 8 ] }>
+                <mesh receiveShadow position={ [ 0, 2.7, 0 ]} scale={ [ 1.8, 0.04, 0.7] }>
                     <boxGeometry />
                     <meshStandardMaterial color="#49242a" />
                 </mesh>
             </RigidBody>
             {/* Shelf Bot */}
-            <CuboidCollider position={ [ -5, 5.5, -4 ]} args={ [ 16, 0.5, 4 ] } />
+            <CuboidCollider position={ [ 0, 2.1, 0 ]} args={ [ 1, 0.04, 0.4 ] } />
             {/* Shelf Slide */}
-            <CuboidCollider position={ [ -8, -19, 0 ]} args={ [ 14, 0.5, 9 ] } rotation={ [Math.PI * 0.20, 0, 0] }/>
+            <CuboidCollider position={ [ 0, 1, 0 ]} args={ [ 0.85, 0.02, 1 ] } rotation={ [Math.PI * 0.20, 0, 0] }/>
             {/* Stopper Bot */}
-            <CuboidCollider position={ [ -5, -30, 8 ]} args={ [ 20, 4, 0.5 ] } />
+            <CuboidCollider position={ [ 0, 0.2, 0.7 ]} args={ [ 1, 0.2, 0.02 ] } />
+            {/* Stopper Bot */}
+            <CuboidCollider position={ [ 0, 0.2, 3 ]} args={ [ 5, 2, 0.02 ] } />
             {/* Side Left */}
-            <CuboidCollider position={ [ -25, 20, 0 ]} args={ [ 0.5, 15, 8 ] } />
+            <CuboidCollider position={ [ -1, 3, 0 ]} args={ [ 0.02, 1, 0.8 ] } />
             {/* Side Left 2*/}
-            <CuboidCollider position={ [ -23.5, -5, 0 ]} args={ [ 0.5, 10, 8 ] } rotation={ [0, 0, Math.PI * 0.05] }/>
-            {/* Side Left 2*/}
-            <CuboidCollider position={ [ -22, -19, 0 ]} args={ [ 0.5, 4, 8 ] } />
+            <CuboidCollider position={ [ -0.94, 1.5, 0 ]} args={ [ 0.02, 0.5, 0.8 ] } rotation={ [0, 0, Math.PI * 0.05] }/>
+            {/* Side Left 3*/}
+            <CuboidCollider position={ [ -0.86, 0.5, 0 ]} args={ [ 0.02, 0.5, 0.8 ] } />
             {/* Side Right */}
-            <CuboidCollider position={ [ 12, 20, 0 ]} args={ [ 0.5, 15, 8 ] } />
+            <CuboidCollider position={ [ 1, 3, 0 ]} args={ [ 0.02, 1, 0.8 ] } />
             {/* Side Right 2*/}
-            <CuboidCollider position={ [ 9, -5, 0 ]} args={ [ 0.5, 10, 8 ] } rotation={ [0, 0, - Math.PI * 0.1] }/>
+            <CuboidCollider position={ [ 0.78, 1.55, 0 ]} args={ [ 0.02, 0.5, 0.8 ] } rotation={ [0, 0, - Math.PI * 0.15] }/>
             {/* Side Right 3*/}
-            <CuboidCollider position={ [ 6, -19, 0 ]} args={ [ 0.5, 4, 8 ] } />
+            <CuboidCollider position={ [ 0.54, 0.6, 0 ]} args={ [ 0.02, 0.5, 0.8 ] } />
             {/* Window */}
-            <CuboidCollider position={ [ -7, 13, 6.5 ]} args={ [ 18, 28, 0.5 ] } />
+            <CuboidCollider position={ [ 0, 2.5, 0.75 ]} args={ [ 1, 1.4, 0.02 ] } />
             {/* Floor */}
-            <RigidBody type="fixed">
-                <mesh receiveShadow position={ [ -6, -36, -9 ]} >
-                    <cylinderGeometry args={ [ 100, 100, 1 ] }/>
-                    <meshStandardMaterial color="#2d5c2c" />
-                </mesh>
-            </RigidBody>
+            <CuboidCollider position={ [ 0, 0, 0 ]} args={ [ 7, 0.1, 7 ] } />
+            <mesh position={ [ 0, 0, 0 ]} >
+                <cylinderGeometry args={ [ 6.75, 6.75, 0.1 ] }/>
+                <meshStandardMaterial color={"#74c474"} />
+            </mesh>
+
             {/* Moving colliders */}
             {/* Falling rewards */}
             {gltfNodes && gltfNodes.NukaCola && (
@@ -190,7 +192,7 @@ export default function Machine({ score, gltfNodes }) {
                         rotation={[0, 0, 0]} 
                         linearDamping={0}
                     >
-                        <primitive object={gltfNodes.NukaCola.clone()} scale={[6, 6, 6]} position={[0, 0, 0]}>
+                        <primitive object={gltfNodes.NukaCola.clone()} scale={[0.35, 0.35, 0.35]} position={[0, 0, 0]}>
                             <meshStandardMaterial color={colors.current[index]} />
                         </primitive>
                     </RigidBody>

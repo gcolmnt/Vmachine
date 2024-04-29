@@ -28,16 +28,16 @@ export default function Model() {
     }, [isHovered])
     
     return (<>
-        <primitive object={machine.machine} scale={0.47} opacity={ 0.2 } rotation={[ 0, Math.PI * 1.5, 0 ]} position={[-5, -35, -7]} />
+        <primitive object={machine.machine} scale={0.0245} opacity={ 0.2 } rotation={[ 0, Math.PI * 1.5, 0 ]} position={[0, 0, 0]} />
         <mesh
             onClick={travelIn}
             onPointerEnter={handlePointerEnter}
             onPointerLeave={handlePointerLeave}
-            position={[-6, 2, -8]}
-            scale={[43, 80, 30]}
+            position={[0, 2, 0]}
+            scale={[2.2, 4, 1.45]}
         >
             <boxGeometry />
-            <meshStandardMaterial color="blue" transparent opacity={0} />
+            <meshStandardMaterial color="blue" transparent opacity={0.1} />
         </mesh>
         </>
     )

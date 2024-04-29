@@ -9,10 +9,10 @@ export default function Grass() {
 // Parameters
 const grassGeometry = useRef()
 
-const PLANE_SIZE = 200
-const BLADE_COUNT = 300000
-const BLADE_WIDTH = 0.4
-const BLADE_HEIGHT = 3.2
+const PLANE_SIZE = 30
+const BLADE_COUNT = 100000
+const BLADE_WIDTH = 0.1
+const BLADE_HEIGHT = 0.6
 const BLADE_HEIGHT_VARIATION = 0.6
 
 const grassTexture = new THREE.TextureLoader().load('grass.jpg')
@@ -139,6 +139,6 @@ function generateBlade (center, vArrOffset, uv) {
 }
 
 return (
-  <mesh geometry={grassGeometry.current ? grassGeometry.current : undefined}  material={grassMaterial} position={[-6, -35.5, -9]}/>
+  <mesh geometry={grassGeometry.current ? grassGeometry.current : undefined}  material={grassMaterial} scale={ 0.45 } position={[0, 0, 0]}/>
 )
 }

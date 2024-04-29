@@ -28,10 +28,10 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
     const { camera, scene } = useThree()
-    const durationAnimationIn = 3
-    const durationAnimationOut = 7
+    const durationAnimationIn = 1
+    const durationAnimationOut = 2
 
-    const [targetPos, setTargetPosition] = useState(new Vector3(-5, 0, 0))
+    const [targetPos, setTargetPosition] = useState(new Vector3(0, 2.2, 0))
     const [ correct ] = useState(() => new Audio('./correct.mp3'))
     const [ wrong ] = useState(() => new Audio('./wrong.mp3'))
     const [ button ] = useState(() => new Audio('./button.mp3'))
@@ -79,18 +79,20 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
             setUserInput("XXXX")
             updateScore(0)
             gsap.to(camera.position, {
-                x: 4,
-                y: -1,
-                z: 20,
+                x: 0.45,
+                y: 0,
+                z: 0.01,
+                ease: "power2.out",
                 duration: durationAnimationIn,
                 onComplete: () => {
                     ready()
                 }
             })
             gsap.to(targetPos, {
-                x: 4,
-                y: -1,
-                z: 17,
+                x: 0.45,
+                y: 1.75,
+                z: -0.4,
+                ease: "power2.out",
                 duration: durationAnimationIn,
                 onUpdate: () => {
                     onUpdateTarget(targetPos)
@@ -105,9 +107,10 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
         if (gameState.phase === 'goToReward') {
             if (isMobile) {
                 gsap.to(camera.position, {
-                    x: -112.5,
-                    y: 75,
-                    z: 150,
+                    x: 0,
+                    y: 6,
+                    z: 12,
+                    ease: "power2.out",
                     duration: durationAnimationOut,
                     onComplete: () => {
                         reward()
@@ -115,9 +118,10 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
                 })
             } else {
                 gsap.to(camera.position, {
-                    x: -101.25,
-                    y: 67.5,
-                    z: 135,
+                    x: 0,
+                    y: 4,
+                    z: 10,
+                    ease: "power2.out",
                     duration: durationAnimationOut,
                     onComplete: () => {
                         reward()
@@ -125,9 +129,10 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
                 })
             }
             gsap.to(targetPos, {
-                x: -5,
-                y: 0,
+                x: 0,
+                y: 2.2,
                 z: 0,
+                ease: "power2.out",
                 duration: durationAnimationOut,
                 onUpdate: () => {
                     onUpdateTarget(targetPos)
@@ -226,7 +231,7 @@ export function Digit({ timer, onUpdateTarget, onUpdateScore }) {
     })
 
     return <>
-        <group position={[3.8, -2.5, 7]}>
+        <group position={[0.455, 1.69, 0.725]} scale={0.0535}>
             <Text
                 fontSize={0.75}
                 font="./arcade.woff"

@@ -51,6 +51,8 @@ export default function Experience()
         { name: 'key9', keys: ['Numpad9', 'Digit9' ] },
     ]
 
+
+
     return <>
         <KeyboardControls 
           map={ keyboardMap }
@@ -60,7 +62,7 @@ export default function Experience()
                     fov: 45,
                     near: 0.1,
                     far: 300,
-                    position: isMobile ? [-112.5, 75, 150] : [-101.25, 67.5, 135],
+                    position: isMobile ? [-6, 6, 12] : [-5, 4, 10],
                 } }
             >
                 {/* <Perf position="top-left" /> */}
@@ -73,7 +75,7 @@ export default function Experience()
                     minPolarAngle={Math.PI * 0.1}
                     maxAzimuthAngle={Math.PI * 2.25}
                     minAzimuthAngle={-Math.PI / 2.25}
-                    target={[-5, 0, 0]}
+                    target={[0, 2.2, 0]}
                 />
                 <Lights />
                 <Suspense fallback={<Fallback/>}>

@@ -11,7 +11,7 @@ export default function Model() {
     })
 
     return (<>
-        <primitive object={glass.glass} scale={ 7.8 } position={ [ -5, 3.2, 20.58] } rotation={ [ - Math.PI * 0.5, 0, Math.PI * 0.5 ] } />
+        <primitive object={glass.glass} scale={ 0.41 } position={ [ 0, 2, 1.43] } rotation={ [ - Math.PI * 0.5, 0, Math.PI * 0.5 ] } />
         </>
     )
 }

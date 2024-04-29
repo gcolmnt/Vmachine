@@ -65,7 +65,7 @@ export default function Interface({ onUpdateTimer })
         {/* Reward */}
         { phase === 'ended' ? 
             <>
-                <div className="reward" onClick={ travelOut } >click Here to get rewards</div> 
+                <div className="reward" onClick={ travelOut } >click HERE to get rewards</div> 
             </>
              : null }
 
